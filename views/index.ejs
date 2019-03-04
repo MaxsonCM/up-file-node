@@ -1,0 +1,102 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Upload de Arquivos para Mongo</title>
+    
+    <link rel="stylesheet" href="scripts/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+  </head>
+
+  <body id="page-top">      
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Upload de arquivos para MongoDB</a>              
+        </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">          
+        <div class="col-md-6 m-auto">
+          <form action="/upload" method="POST" enctype="multipart/form-data">
+              <div class="file-field input-field">
+                  <div class="btn">
+                      <span>Escolha seu Arquivo</span>
+                      <input type="file" type="file" name="file" id="file" >
+                  </div>
+                  <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="Seu arquivo">
+                  </div>
+              </div>              
+              <input type="submit" value="Enviar" class="btn">              
+          </form>
+
+          <hr>
+          <% if (files) { %>
+            <% files.forEach(function(file) { %>
+              <div class="row">
+                  <div class="col s12 m7">
+                      <div class="card">                        
+                          <% if (file.isImage) { %>
+                              <div class="card-image">  
+                                <img src="view/<%= file.filename %>" >
+                                <form method="POST" action="/files/<%= file._id %>?_method=DELETE">
+                                    <div class="card-action">
+                                        <button class="waves-effect waves-light btn red">
+                                            <span><i class="material-icons left">delete</i>Excluir</span>
+                                        </button>
+                                    </div>                                
+                                </form>
+                            </div>
+                          <% }else { %>                              
+                              <form method="GET" action="/view/<%= file.filename %>">
+                                  <div class="card-action">
+                                      <button class="waves-effect waves-light btn blue">                                      
+                                          <span><i class="material-icons left">aspect_ratio</i>Visualizar: <%= file.filename %></span>
+                                      </button>
+                                  </div>
+                              </form>
+                              <form method="POST" action="/files/<%= file._id %>?_method=DELETE">
+                                <div class="card-action">
+                                    <button class="waves-effect waves-light btn red">
+                                        <span><i class="material-icons left">delete</i>Excluir</span>
+                                    </button>
+                                </div>                                
+                              </form>
+                          <% }%>
+                      </div>
+                  </div>
+              </div>
+            <% }) %>
+          <% }else { %>
+            <p>Nenhum arquivo para exibir</p>
+          <% }%>
+        </div>
+      </div>
+    </div>
+    
+    <script src="scripts/js/materialize.js"></script>
+  </body>
+
+  <footer class="page-footer">
+      <div class="container">
+          <div class="row">
+              <div class="col l6 s12">
+                  <h5 class="white-text">Teste prático</h5>
+                  <p class="grey-text text-lighten-4">Feito o uso do Nodejs para uma aplicação que consiga fazer o upload de arquivos para o mongodb.</p>
+              </div>              
+          </div>
+      </div>
+      <div class="footer-copyright">
+          <div class="container">Feito em  2019 por Maxson</div>
+      </div>
+  </footer>
+</html>
