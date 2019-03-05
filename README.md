@@ -7,11 +7,11 @@
 * [Nodejs](https://nodejs.org/en/)
 * [MongoDB](https://www.mongodb.com/download-center/community)
 * [Git (to copy the project)](https://git-scm.com/)
-* [copy of the project](https://github.com/MaxsonCM/up-file-node)
+* [copy of the project](https://github.com/MaxsonCM/upload-files-to-mongodb)
 
 With Git installed run the code below in the terminal
 ```bash
-git clone https://github.com/MaxsonCM/up-file-node.git
+git clone https://github.com/MaxsonCM/upload-files-to-mongodb.git
 ```
 
 **After copying the project and installation of Node Js from the terminal `into the project folder` and run the following command:**
